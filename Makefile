@@ -7,12 +7,9 @@ TYPST_ARGS := --font-path $(BUILD_DIR) index.typ --features html
 
 .PHONY: all clean watch-preview-html watch-preview-svg previews index.typ
 
-all: $(FONT_NAME).tar $(FONTS) previews
+all: $(FONTS) previews
 
 previews: $(PREVIEWS)
-
-$(FONT_NAME).tar: $(FONTS)
-	tar -cvf $< $(BUILD_DIR)
 
 $(BUILD_DIR)/%: $(FONT_DIR) | $(BUILD_DIR)
 	# enable auto hinting
