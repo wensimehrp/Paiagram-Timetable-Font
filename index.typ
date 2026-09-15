@@ -58,7 +58,10 @@
           for time in (arr, dep) {
             td({
               time.display("[hour]:[minute]")
-              h.small(class: "pl-[1.5pt]", time.display("[second]"))
+              h.small(class: "pl-[1.5pt]", {
+                h.span(class: "sr-only")[:]
+                time.display("[second]")
+              })
             })
           }
         })
