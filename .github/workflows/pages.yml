@@ -1,0 +1,30 @@
+name: Build pages
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: DeterminateSystems/nix-installer-action@v23
+      - uses: DeterminateSystems/magic-nix-cache-action@v15
+      - run: nix develop --command make
+      # create dir because upload-pages-artifact only knows directories
+      - run: mkdir -p _site; cp index.html _site
+      - uses: actions/upload-pages-artifact@v5
+      - uses: actions/deploy-pages@v5
+        id: deployment
