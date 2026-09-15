@@ -1,31 +1,19 @@
-# XF_Nstf
-
-![font example](example.png)
-
-This font is a compact font inspired by train schedule carring train crews.
-
-## Included glyphs
-
-This font only included 94 glyphs (ASCII range).
-```
- !"$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
-```
+# Paiagram-Timetable-Font
 
 ## License
 
-This font is licensed under the [SIL Open Font License 1.1](LICENSE).
-Feel free to use it for personal or commercial projects.
+This font is licensed under the [SIL Open Font License 1.1](./OFL.txt), with the
+reserved font name "Paiagram-Timetable-Font" (Notice the hyphens). Feel free to
+use it for personal or commercial projects.
 
-## Repository Structure
+## Building
 
-- `XF_Nstf.sfdir/`: FontForge source directories (`.sfd`)
-- `fonts/`: Compiled font files (`.otf`, `.ttf`, `.woff2`)
+Requirements:
 
-## Development / Building from Source
-
-Requires [FontForge](https://fontforge.org/) installed on your system.
+- [FontForge](https://fontforge.org/)
+- Make
+- Typst & internet connection (for generating preview page)
 
 ```bash
-# Generate .otf, .ttf, and .woff2 into fonts/ directory
-bash build.sh
+make
 ```
