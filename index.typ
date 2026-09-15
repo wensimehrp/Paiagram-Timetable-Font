@@ -82,6 +82,11 @@
      !"$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
     ```.text,
   )
+
+  = About the Font
+
+  #import "@preview/cmarker:0.1.10"
+  #cmarker.render(read("README.md"))
 ]
 
 #context if target() == "html" {
