@@ -15,7 +15,7 @@ $(BUILD_DIR):
 	mkdir -p $@
 
 index.%: index.typ
-	typst compile $< --format % --features html $@
+	typst compile $< --format $* --features html $@
 
 watch-preview:
 	typst watch index.typ --format html --features html
