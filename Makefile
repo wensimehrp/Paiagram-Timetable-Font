@@ -1,33 +1,24 @@
-#!/usr/bin/env bash
+FONT_DIR  := Paiagram-Timetable-Font.sfdir
+FONT_NAME := Paiagram-Timetable-Font
+BUILD_DIR := build
+FONTS     := $(addprefix $(BUILD_DIR)/$(FONT_NAME)., ttf otf woff2)
+PREVIEWS  := index.html index.png
 
-set -euo pipefail
+.PHONY: all clean watch-preview
 
-SRC_SFDIR="./XF_Nstf.sfdir"
-OUT_DIR="fonts"
+all: $(FONTS)
 
-mkdir -p "${OUT_DIR}"
+$(BUILD_DIR)/%: $(FONT_DIR) | $(BUILD_DIR)
+	fontforge -lang=ff -c 'Open("$<"); Generate("$@");'
 
-echo "🔨 Building fonts from ${SRC_SFDIR}..."
+$(BUILD_DIR):
+	mkdir -p $@
 
-fontforge -lang=py -c "
-import fontforge, sys
+index.%: index.typ
+	typst compile $< --format % --features html $@
 
-sfdir_path = sys.argv[1]
-out_dir = sys.argv[2]
+watch-preview:
+	typst watch index.typ --format html --features html
 
-print('  -> Loading sfdir...')
-font = fontforge.open(sfdir_path)
-
-print('  -> Generating OTF...')
-font.generate(f'{out_dir}/XF_Nstf.otf')
-
-print('  -> Generating TTF...')
-font.generate(f'{out_dir}/XF_Nstf.ttf')
-
-print('  -> Generating WOFF2...')
-font.generate(f'{out_dir}/XF_Nstf.woff2')
-
-font.close()
-" "${SRC_SFDIR}" "${OUT_DIR}"
-
-echo "Build complete! Output files are in ${OUT_DIR}/"
+clean:
+	rm -rf $(BUILD_DIR) $(PREVIEWS)
