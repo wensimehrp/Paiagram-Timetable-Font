@@ -24,6 +24,7 @@
             fontforge-gtk
             typst
             gnumake
+            wget
           ];
         };
       }

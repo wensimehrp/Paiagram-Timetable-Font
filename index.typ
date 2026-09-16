@@ -3,6 +3,7 @@
 #import "@preview/typhoon:0.2.0": tailwind-css, update-elem
 #let font-bytes = read("build/Paiagram-Timetable-Font.woff2", encoding: none)
 #let font-base64 = "data:font/woff2;charset=utf-8;base64," + based.base64.encode(font-bytes)
+#let xf_nstf_glyphs = " !\"$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~"
 
 #let title-text = "Paiagram-Timetable-Font"
 
@@ -15,7 +16,7 @@
   table(
     columns: (4.5em,) * 2,
     stroke: 1pt,
-    inset: .25em,
+    inset: .2em,
     align: center + horizon,
     [12:34#s-fmt(55)], [12:35#s-fmt(20)],
     [12:38#s-fmt(15)], [=======],
@@ -76,13 +77,6 @@
 
   = Glyphs
 
-  #h.span(
-    class: "ptf break-all",
-    ```
-     !"$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
-    ```.text,
-  )
-
   #h.textarea(
     id: "input-textarea",
     placeholder: "Type your message here",
@@ -90,7 +84,7 @@
   )
 
   #let common-font-sizes = (6, 9, 11, 14, 18, 24, 36).rev()
-  #h.section(class: "grid grid-cols-[auto_1fr] gap-3", for size in common-font-sizes {
+  #h.p(class: "grid grid-cols-[auto_1fr] gap-3", for size in common-font-sizes {
     let size-str = str(size) + "pt"
     h.span(size-str)
     h.span(class: "text-mirror ptf my-0 text-[" + size-str + "]")
@@ -109,6 +103,19 @@
     });
     ```.text,
   )
+
+  == Difference with XF_Nstf
+
+  #h.p(class: "mx-auto w-min", h.frame(box(
+    inset: 1em,
+    grid(columns: 8, inset: .5em, ..xf_nstf_glyphs
+        .clusters()
+        .map(char => {
+          let ptf = "Paiagram-Timetable-Font"
+          place(text(size: 5em, fill: orange.saturate(10%).transparentize(50%), font: ptf, char))
+          text(size: 5em, fill: blue.saturate(100%).transparentize(50%), font: "XF_Nstf", char)
+        })),
+  )))
 
   = About the Font
 
