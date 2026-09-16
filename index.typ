@@ -13,7 +13,7 @@
   set page(width: auto, height: auto, margin: 5pt)
   let s-fmt(s) = box(inset: (left: .15em), text(size: .7em, [#s]))
   table(
-    columns: (4.5em, ) * 2,
+    columns: (4.5em,) * 2,
     stroke: 1pt,
     inset: .25em,
     align: center + horizon,
@@ -80,6 +80,33 @@
     class: "ptf break-all",
     ```
      !"$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+    ```.text,
+  )
+
+  #h.textarea(
+    id: "input-textarea",
+    placeholder: "Type your message here",
+    class: "w-full border ptf px-2 py-1 h-50 border-neutral-500/50 bg-neutral-500/10",
+  )
+
+  #let common-font-sizes = (6, 9, 11, 14, 18, 24, 36).rev()
+  #h.section(class: "grid grid-cols-[auto_1fr] gap-3", for size in common-font-sizes {
+    let size-str = str(size) + "pt"
+    h.span(size-str)
+    h.span(class: "text-mirror ptf my-0 text-[" + size-str + "]")
+  })
+
+  // Actually, this is just Basic JavaScript Jessie...
+  #h.script(
+    ```js
+    const source = document.querySelector('#input-textarea');
+    const targets = document.querySelectorAll('.text-mirror');
+
+    source.addEventListener('input', () => {
+      targets.forEach(target => {
+        target.textContent = source.value;
+      });
+    });
     ```.text,
   )
 
