@@ -16,7 +16,8 @@ Paiagram-Timetable-Font is based on
 ## Difference with XF_Nstf
 
 - Improved hinting
-- Extra glyphs
+- Added extra glyphs
+- Modified glyphs (added descenders)
 
 ## License
 
