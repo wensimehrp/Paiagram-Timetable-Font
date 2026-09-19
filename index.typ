@@ -51,7 +51,7 @@
       let td = h.td.with(class: "py-0 text-center")
       for (i, stn) in stations.enumerate() {
         tr({
-          h.th(scope: "row", class: "font-sans", stn)
+          h.th(scope: "row", class: "font-normal", stn)
           current-t += duration(minutes: 25, seconds: 37)
           let arr = current-t
           current-t += duration(minutes: 2, seconds: 4)
