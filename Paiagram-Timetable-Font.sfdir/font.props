@@ -44,13 +44,13 @@ OS2Vendor: 'PfEd'
 MarkAttachClasses: 1
 DEI: 91125
 LangName: 1033
-Encoding: ISO8859-1
+Encoding: UnicodeBmp
 UnicodeInterp: none
 NameList: AGL For New Fonts
 DisplaySize: -36
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 0 68 22
+WinInfo: 7072 68 22
 BeginPrivate: 0
 EndPrivate
 TeXData: 1 0 0 1048576 524288 349525 0 1048576 349525 783286 444596 497025 792723 393216 433062 380633 303038 157286 324010 404750 52429 2506097 1059062 262144
